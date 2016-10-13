@@ -6,10 +6,7 @@ from __future__ import unicode_literals
 - Purpose: creates a listing of subfolder names and ids for a given folder and id,
 - Usage (from shell):
     - source the env
-    - # -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
+    - python ./get_subfolder_ids.py
 
 >>> PARENT_FOLDER_INFO = { u'name': u'Centers, Institutes, and Programs', u'id': u'479' }
 >>> runCode( PARENT_FOLDER_INFO )
