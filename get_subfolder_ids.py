@@ -3,14 +3,10 @@
 from __future__ import unicode_literals
 
 """
-- Purpose: creates a listing of subfolder names and ids for a given folder and id,
+- Purpose: creates a listing of subfolder names and ids
 - Usage (from shell):
     - source the env
     - python ./get_subfolder_ids.py
-
->>> PARENT_FOLDER_INFO = { u'name': u'Centers, Institutes, and Programs', u'id': u'479' }
->>> runCode( PARENT_FOLDER_INFO )
-'blah'
 """
 
 import json, pprint, os
