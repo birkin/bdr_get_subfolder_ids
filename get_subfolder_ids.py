@@ -30,9 +30,9 @@ def runCode():
     returned_folder_name = jdict['name']
     returned_folder_id = jdict['id']
     if not returned_folder_name == PARENT_FOLDER_DCT['name']:
-        return 'ERROR: expected folder name ```{expected}```; got folder name ```{received}```'.format( expected=PARENT_FOLDER_DCT['name'], received=returned_folder_name )
+        print 'ERROR: expected folder name ```{expected}```; got folder name ```{received}```'.format( expected=PARENT_FOLDER_DCT['name'], received=returned_folder_name )
     if not returned_folder_id == PARENT_FOLDER_DCT['id']:
-        return 'ERROR: expected folder name ```{expected}```; got folder name ```{received}```'.format( expected=PARENT_FOLDER_DCT['id'], received=returned_folder_id )
+        print 'ERROR: expected folder name ```{expected}```; got folder name ```{received}```'.format( expected=PARENT_FOLDER_DCT['id'], received=returned_folder_id )
     print 'name and id ok'
     ## build output
     output = {
