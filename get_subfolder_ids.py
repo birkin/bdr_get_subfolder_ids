@@ -15,13 +15,13 @@ import requests
 FOLDER_API_URL = unicode( os.environ['FLDR_IDS__FOLDER_API_URL'] )
 FOLDER_API_AUTH_NAME = unicode( os.environ['FLDR_IDS__FOLDER_API_AUTH_NAME'] )
 FOLDER_API_AUTH_KEY = unicode( os.environ['FLDR_IDS__FOLDER_API_AUTH_KEY'] )
-PARENT_FOLDER_DCT = json.loads( os.environ['FLDR_IDS__PARENT_FOLDER_INFO'] )  # format: { 'name': 'the name', 'id': 'the id string' }
+TARGET_FOLDER_LST = json.loads( os.environ['FLDR_IDS__TARGET_FOLDER_INFO'] )  # format: [ {'folder_a': 1}, {'folder_b': 2} ]
 
 
-def runCode():
+def runCode( target_folder_dct ):
     print 'starting runCode()'
     ## get data
-    payload = { 'folder_id': PARENT_FOLDER_DCT['id'] }
+    payload = { 'folder_id': target_folder_dct['id'] }
     r = requests.get( FOLDER_API_URL, params=payload, auth=(FOLDER_API_AUTH_NAME, FOLDER_API_AUTH_KEY) )
     json_string = r.content.decode( 'utf-8' )
     jdict = json.loads( json_string )
@@ -29,16 +29,16 @@ def runCode():
     ## check for correct folder
     returned_folder_name = jdict['name']
     returned_folder_id = jdict['id']
-    if not returned_folder_name == PARENT_FOLDER_DCT['name']:
-        print 'ERROR: expected folder name ```{expected}```; got folder name ```{received}```'.format( expected=PARENT_FOLDER_DCT['name'], received=returned_folder_name )
+    if not returned_folder_name == target_folder_dct['name']:
+        print 'ERROR: expected folder name ```{expected}```; got folder name ```{received}```'.format( expected=target_folder_dct['name'], received=returned_folder_name )
         return
-    if not returned_folder_id == PARENT_FOLDER_DCT['id']:
-        print 'ERROR: expected folder id ```{expected}```; got folder name ```{received}```'.format( expected=PARENT_FOLDER_DCT['id'], received=returned_folder_id )
+    if not returned_folder_id == target_folder_dct['id']:
+        print 'ERROR: expected folder id ```{expected}```; got folder name ```{received}```'.format( expected=target_folder_dct['id'], received=returned_folder_id )
         return
     print 'name and id ok'
     ## build output
     output = {
-        'target_folder': { 'name': returned_folder_name, 'id': PARENT_FOLDER_DCT['id'] },
+        'target_folder': { 'name': returned_folder_name, 'id': returned_folder_id },
         'subfolders': []
         }
     for child_folder in jdict['child_folders']:
@@ -46,8 +46,9 @@ def runCode():
         output['subfolders'].append( subfolder )
     output['subfolders'].sort()
     print 'output, ```{}```'.format( pprint.pformat(output) )
-    print '\n-- END OF SCRIPT --'
 
 
 if __name__ == "__main__":
-    runCode()
+    for target_folder_dct in TARGET_FOLDER_LST:
+        runCode( target_folder_dct )
+    print '\n-- END OF SCRIPT --'
