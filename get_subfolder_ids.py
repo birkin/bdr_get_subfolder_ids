@@ -44,7 +44,7 @@ def runCode( target_folder_dct ):
         }
     for child_folder in jdict['child_folders']:
         subfolder = ( child_folder['name'], child_folder['id'] )
-        output['subfolders'].append( subfolder )
+        output['target_subfolders'].append( subfolder )
     output['subfolders'].sort()
     print 'output, ```{}```'.format( pprint.pformat(output) )
 
