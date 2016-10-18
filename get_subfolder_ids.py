@@ -26,7 +26,7 @@ def runCode( target_folder_dct ):
     r = requests.get( FOLDER_API_URL, params=payload, auth=(FOLDER_API_AUTH_NAME, FOLDER_API_AUTH_KEY) )
     json_string = r.content.decode( 'utf-8' )
     jdict = json.loads( json_string )
-    print( 'jdict, ```{}```'.format(pprint.pformat(jdict)) )
+    # print( 'jdict, ```{}```'.format(pprint.pformat(jdict)) )
     ## check for correct folder
     returned_folder_name = jdict['name']
     returned_folder_id = jdict['id']
