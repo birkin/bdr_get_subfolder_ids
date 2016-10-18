@@ -21,7 +21,8 @@ TARGET_FOLDER_LST = json.loads( os.environ['FLDR_IDS__TARGET_FOLDER_INFO'] )  # 
 def runCode( target_folder_dct ):
     print 'starting runCode()'
     ## get data
-    payload = { 'folder_id': target_folder_dct['id'] }
+    ( target_name, target_id ) == ( target_folder_dct.items()[0][0], target_folder_dct.items()[0][1] )  # single item dct
+    payload = { 'folder_id': target_id }
     r = requests.get( FOLDER_API_URL, params=payload, auth=(FOLDER_API_AUTH_NAME, FOLDER_API_AUTH_KEY) )
     json_string = r.content.decode( 'utf-8' )
     jdict = json.loads( json_string )
@@ -29,11 +30,11 @@ def runCode( target_folder_dct ):
     ## check for correct folder
     returned_folder_name = jdict['name']
     returned_folder_id = jdict['id']
-    if not returned_folder_name == target_folder_dct['name']:
-        print 'ERROR: expected folder name ```{expected}```; got folder name ```{received}```'.format( expected=target_folder_dct['name'], received=returned_folder_name )
+    if not returned_folder_name == target_name:
+        print 'ERROR: expected folder name ```{expected}```; got folder name ```{received}```'.format( expected=target_name, received=returned_folder_name )
         return
-    if not returned_folder_id == target_folder_dct['id']:
-        print 'ERROR: expected folder id ```{expected}```; got folder name ```{received}```'.format( expected=target_folder_dct['id'], received=returned_folder_id )
+    if not returned_folder_id == target_id:
+        print 'ERROR: expected folder id ```{expected}```; got folder name ```{received}```'.format( expected=target_id, received=returned_folder_id )
         return
     print 'name and id ok'
     ## build output
