@@ -19,6 +19,7 @@ PARENT_FOLDER_DCT = json.loads( os.environ['FLDR_IDS__PARENT_FOLDER_INFO'] )  # 
 
 
 def runCode():
+    print 'starting runCode()'
     ## get data
     payload = { 'folder_id': PARENT_FOLDER_DCT['id'] }
     r = requests.get( FOLDER_API_URL, params=payload, auth=(FOLDER_API_AUTH_NAME, FOLDER_API_AUTH_KEY) )
