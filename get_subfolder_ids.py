@@ -23,8 +23,8 @@ def runCode():
   payload = { 'folder_id': PARENT_FOLDER_DCT['id'] }
   r = requests.get( FOLDER_API_URL, params=payload, auth=(FOLDER_API_AUTH_NAME, FOLDER_API_AUTH_KEY) )
   json_string = r.content.decode( 'utf-8' )
-  print( 'json_string, ```{}```'.format(json_string) )
   jdict = json.loads( json_string )
+  print( 'jdict, ```{}```'.format(pprint.pformat(jdict)) )
   ## check for correct folder
   returned_json_name = jdict['result']['folder_name']
   if not returned_json_name == PARENT_FOLDER_DCT['name']:
