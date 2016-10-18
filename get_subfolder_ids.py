@@ -40,7 +40,7 @@ def runCode( target_folder_dct ):
     ## build output
     output = {
         'target_folder': { 'name': returned_folder_name, 'id': returned_folder_id },
-        'subfolders': []
+        'target_subfolders': []
         }
     for child_folder in jdict['child_folders']:
         subfolder = ( child_folder['name'], child_folder['id'] )
