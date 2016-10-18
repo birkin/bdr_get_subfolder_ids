@@ -45,7 +45,7 @@ def runCode():
         subfolder = ( child_folder['name'], child_folder['id'] )
         output['subfolders'].append( subfolder )
     output['subfolders'].sort()
-    pprint.pformat( output )
+    print 'output, ```{}```'.format( pprint.pformat(output) )
     print '\n-- END OF SCRIPT --'
 
 
