@@ -28,11 +28,13 @@ def runCode():
     print( 'jdict, ```{}```'.format(pprint.pformat(jdict)) )
     ## check for correct folder
     returned_folder_name = jdict['name']
-    returned_folder_id = unicode( jdict['id'] )
+    returned_folder_id = jdict['id']
     if not returned_folder_name == PARENT_FOLDER_DCT['name']:
         print 'ERROR: expected folder name ```{expected}```; got folder name ```{received}```'.format( expected=PARENT_FOLDER_DCT['name'], received=returned_folder_name )
+        return
     if not returned_folder_id == PARENT_FOLDER_DCT['id']:
-        print 'ERROR: expected folder name ```{expected}```; got folder name ```{received}```'.format( expected=PARENT_FOLDER_DCT['id'], received=returned_folder_id )
+        print 'ERROR: expected folder id ```{expected}```; got folder name ```{received}```'.format( expected=PARENT_FOLDER_DCT['id'], received=returned_folder_id )
+        return
     print 'name and id ok'
     ## build output
     output = {
