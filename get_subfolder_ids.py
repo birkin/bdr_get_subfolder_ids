@@ -32,6 +32,7 @@ def runCode():
         return 'ERROR: expected folder name ```{expected}```; got folder name ```{received}```'.format( expected=PARENT_FOLDER_DCT['name'], received=returned_folder_name )
     if not returned_folder_id == PARENT_FOLDER_DCT['id']:
         return 'ERROR: expected folder name ```{expected}```; got folder name ```{received}```'.format( expected=PARENT_FOLDER_DCT['id'], received=returned_folder_id )
+    print 'name and id ok'
     ## build output
     output = {
         'parent_folder': { 'name': returned_folder_name, 'id': PARENT_FOLDER_DCT['id'] },
@@ -39,7 +40,7 @@ def runCode():
         }
     for entry in jdict['result']['folder_subfolders']:
         output['subfolders'].append( entry['subfolder'] )
-    pprint.pprint( output )
+    pprint.pformat( output )
     print '\n-- END OF SCRIPT --'
 
 
