@@ -28,7 +28,7 @@ def runCode():
     print( 'jdict, ```{}```'.format(pprint.pformat(jdict)) )
     ## check for correct folder
     returned_folder_name = jdict['name']
-    returned_folder_id = jdict['id']
+    returned_folder_id = unicode( jdict['id'] )
     if not returned_folder_name == PARENT_FOLDER_DCT['name']:
         print 'ERROR: expected folder name ```{expected}```; got folder name ```{received}```'.format( expected=PARENT_FOLDER_DCT['name'], received=returned_folder_name )
     if not returned_folder_id == PARENT_FOLDER_DCT['id']:
@@ -39,8 +39,10 @@ def runCode():
         'parent_folder': { 'name': returned_folder_name, 'id': PARENT_FOLDER_DCT['id'] },
         'subfolders': []
         }
-    for entry in jdict['result']['folder_subfolders']:
+    for child_folder in jdict['child_folders']:
+        subfolder = ( child_folder['name'], child_folder['id'] )
         output['subfolders'].append( entry['subfolder'] )
+    output['subfolders'].sort()
     pprint.pformat( output )
     print '\n-- END OF SCRIPT --'
 
