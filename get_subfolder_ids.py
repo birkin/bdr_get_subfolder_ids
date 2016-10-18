@@ -41,7 +41,7 @@ def runCode():
         }
     for child_folder in jdict['child_folders']:
         subfolder = ( child_folder['name'], child_folder['id'] )
-        output['subfolders'].append( entry['subfolder'] )
+        output['subfolders'].append( subfolder )
     output['subfolders'].sort()
     pprint.pformat( output )
     print '\n-- END OF SCRIPT --'
