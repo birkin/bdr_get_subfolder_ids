@@ -21,7 +21,7 @@ TARGET_FOLDER_LST = json.loads( os.environ['FLDR_IDS__TARGET_FOLDER_INFO'] )  # 
 def runCode( target_folder_dct ):
     print 'starting runCode()'
     ## get data
-    ( target_name, target_id ) == ( target_folder_dct.items()[0][0], target_folder_dct.items()[0][1] )  # single item dct
+    ( target_name, target_id ) = ( target_folder_dct.items()[0][0], target_folder_dct.items()[0][1] )  # single item dct
     payload = { 'folder_id': target_id }
     r = requests.get( FOLDER_API_URL, params=payload, auth=(FOLDER_API_AUTH_NAME, FOLDER_API_AUTH_KEY) )
     json_string = r.content.decode( 'utf-8' )
