@@ -53,7 +53,7 @@ def runCode( target_folder_dct ):
         subfolder = ( child_folder['name'], child_folder['id'] )
         output['target_subfolders'].append( subfolder )
     log.debug( 'output, ```{}```'.format(pprint.pformat(output)) )
-    print 'output, ```{}```'.format( pprint.pformat(output) )
+    # print 'output, ```{}```'.format( pprint.pformat(output) )
 
 
 if __name__ == "__main__":
